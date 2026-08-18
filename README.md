@@ -11,11 +11,56 @@ rm -rf .git && git init          # start your own history
 claude
 ```
 
-then:
+### Example — a new product from nothing
 
 ```
 /build-product "a mood tracker for small teams"
 ```
+
+What you will see:
+
+```
+Phase 1  product-strategist
+         → asks: who feels this pain today, and what do they do instead?
+         → writes docs/validated-idea.md
+         ⏸  approve / edit / redo
+
+Phase 2  spec-writer + ux-designer          (running in parallel)
+         → docs/requirements.md, user-stories.md, ux-wireframes.md
+         ⏸  approve / edit / redo
+
+Phase 3  technical-architect
+         → docs/architecture.md, implementation-plan.md
+         → src/contract.ts + tests/contract.test.ts   ← frozen here
+         ⏸  approve / edit / redo          (last checkpoint)
+
+Phase 4-8 run without stopping:
+         scaffolding → parallel worktrees → tests → review + security → PR
+         ⏹  stops at the PR. You merge.
+```
+
+Answering `edit` at a checkpoint sends your notes back to that agent and re-runs it.
+`redo` starts the phase over.
+
+### Example — an existing codebase
+
+`/build-product` assumes an empty folder. For a repo that already has code but no
+`docs/`, start here instead:
+
+```
+/adopt-codebase "add SSO login"
+```
+
+It maps the real entry points, directories, and data stores; verifies the install/run/test
+commands by actually running them; writes `docs/codebase-map.md` and an **as-built**
+`docs/architecture.md`; backfills only the artefacts your stated goal needs — then tells
+you which `/build-product` phase to resume at. Most existing projects land at Phase 5.
+
+```
+/adopt-codebase          # no goal — just map and organise, then stop
+```
+
+It never starts implementing. It reports and hands the decision back.
 
 ## What runs
 
@@ -70,10 +115,12 @@ are not installed the sections are simply ignored, and everything else still wor
 Install them with `/plugin` if you do not have them. Not building on AWS? Delete the
 AWS section from each agent — nothing else depends on it.
 
-## Existing project?
+## Commands
 
-Run `/build-product` anyway. Phases whose artefact already exists are skipped, and the
-orchestrator tells you which. Most existing projects enter at Phase 5.
+| Command | For |
+|---|---|
+| `/build-product "<idea>"` | A new product. Runs all 9 phases. |
+| `/adopt-codebase ["<next goal>"]` | An existing repo with code but no `docs/`. Maps it, backfills what the goal needs, tells you which phase to resume at. |
 
 ## Adapting it
 

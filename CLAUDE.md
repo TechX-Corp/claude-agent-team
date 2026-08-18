@@ -3,6 +3,10 @@
 This repo carries a full-SDLC agent team in `.claude/`. Clone it, open Claude Code,
 run `/build-product "<your idea>"`. Nothing to install.
 
+## Commands
+- `/build-product "<idea>"` — new product, 9 phases
+- `/adopt-codebase ["<goal>"]` — existing code, no docs: map it, backfill, resume mid-pipeline
+
 ## How the team works
 Eleven agents in `.claude/agents/`, one per SDLC role, driven by `/build-product`
 through 9 phases. **Artefacts in `docs/` are the handoff between phases** — a later
