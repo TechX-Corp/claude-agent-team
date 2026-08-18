@@ -25,3 +25,10 @@ Starter prompts:
 - `users are seeing {symptom} on {where}. investigate and tell me what is going on`
 - `{symptom}. check the logs, recent deploys, and config changes, then tell me the most likely cause`
 - `summarize what we did this session and suggest what to add to CLAUDE.md`
+
+## AWS (if the `aws-core` / `aws-agents` plugins are installed)
+- `Skill(aws-core:aws-observability)` — query CloudWatch logs/metrics to confirm a report before triaging
+- `Skill(aws-agents:agents-debug)` · `agents-optimize` — agent-runtime failures and cost/latency
+- `Skill(aws-core:aws-billing-and-cost-management)` — when the complaint is the bill
+
+Read the actual log line. A user's description of a symptom is a starting point, not a cause.

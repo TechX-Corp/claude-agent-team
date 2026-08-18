@@ -26,3 +26,15 @@ Starter prompts:
 - `plan how to refactor the {target} to {goal}. list the files you would change, but don't edit anything yet`
 - `which files would I need to touch to {change}?`
 - `what would break if I deleted {target}?`
+
+## AWS (if the `aws-core` / `aws-agents` plugins are installed)
+Choosing the stack on AWS — consult before committing to a service:
+- `Skill(aws-core:aws-blocks)` — pick the service combination; start here
+- `Skill(aws-core:aws-serverless)` · `aws-compute` · `aws-containers` — which compute, and why
+- `Skill(aws-core:aws-database)` — data store choice
+- `Skill(aws-core:aws-billing-and-cost-management)` — price the design BEFORE approval, not after the bill
+- `Skill(aws-core:amazon-bedrock)` · `aws-ai-ml` — if the product uses models
+- `Skill(aws-agents:agents-build)` — if the product IS an agent
+
+Record the cost estimate in `docs/architecture.md`. An architecture with no number
+attached is a guess.

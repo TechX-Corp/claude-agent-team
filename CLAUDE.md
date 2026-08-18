@@ -19,6 +19,11 @@ the pipeline survive a `/clear`, a crash, or a new person picking it up tomorrow
 - **The interface contract is frozen** once Phase 3 approves it. Implementers read it; they never edit it. This is what makes parallel worktrees safe.
 - **Ask when genuinely ambiguous**, in multiple-choice form. Do not silently pick between readings.
 
+## AWS
+Seven agents have an **AWS** section listing the `aws-core` / `aws-agents` plugin skills
+for their role. Consult them before choosing a service, writing SDK code, or deploying.
+If the plugins are not installed, skip the section — do not improvise AWS advice from memory.
+
 ## Phase checkpoints
 Phases 1-3 stop for approval. Phases 4-9 run without asking — being made to type
 "continue" is an orchestration failure, not politeness.

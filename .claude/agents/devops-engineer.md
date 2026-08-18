@@ -23,3 +23,14 @@ Starter prompts:
 - `write a GitHub Actions workflow that {steps} on every push to {branch}`
 - `here is a build error. fix the root cause and verify the build succeeds`
 - `here is my Terraform plan output. what is this going to do, and is anything here going to cause problems?`
+
+## AWS (if the `aws-core` / `aws-agents` plugins are installed)
+- `Skill(aws-core:signing-in-to-aws)` — credentials first; most "AWS is broken" is an expired session
+- `Skill(aws-core:aws-cdk)` or `aws-cloudformation` — infrastructure as code, never console clicks
+- `Skill(aws-core:aws-deployment)` · `launch-with-aws` — deploy path
+- `Skill(aws-core:aws-containers)` — if shipping images
+- `Skill(aws-agents:agents-deploy)` — if deploying an agent runtime
+- `Skill(aws-core:aws-observability)` — logs and alarms ship WITH the service, not later
+
+Infra rules: never `apply` without showing the plan first. Confirm an additive change
+shows zero destroys. Verify the deploy at the live resource, not at the green tick.

@@ -43,6 +43,25 @@ or someone else picking it up next week.
 file with a test pinning it. Phase 5 implementers may read it but never edit it — which
 is what lets backend and frontend run in parallel git worktrees without colliding.
 
+## AWS projects
+
+Seven agents carry an **AWS** section pointing at the official `aws-core` / `aws-agents`
+plugin skills. Those plugins live in your Claude Code install, not in this repo — if they
+are not installed the sections are simply ignored, and everything else still works.
+
+| Agent | AWS skills it reaches for |
+|---|---|
+| `product-strategist` | `aws-billing-and-cost-management`, `agents-pay` — is the unit cost survivable |
+| `technical-architect` | `aws-blocks`, `aws-serverless`, `aws-compute`, `aws-containers`, `aws-database`, `amazon-bedrock`, `agents-build`, billing |
+| `backend-developer` | `aws-sdk-python-usage` / `aws-sdk-js-v3-usage`, `aws-secrets-manager`, `aws-database`, `aws-messaging-and-streaming`, `amazon-bedrock`, `agents-connect` |
+| `devops-engineer` | `signing-in-to-aws`, `aws-cdk`, `aws-cloudformation`, `aws-deployment`, `launch-with-aws`, `aws-containers`, `aws-observability`, `agents-deploy` |
+| `test-engineer` | `aws-observability` |
+| `security-auditor` | `aws-iam`, `aws-secrets-manager`, `agents-harden` |
+| `feedback-triage` | `aws-observability`, `agents-debug`, `agents-optimize`, billing |
+
+Install them with `/plugin` if you do not have them. Not building on AWS? Delete the
+AWS section from each agent — nothing else depends on it.
+
 ## Existing project?
 
 Run `/build-product` anyway. Phases whose artefact already exists are skipped, and the

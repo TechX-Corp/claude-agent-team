@@ -22,3 +22,9 @@ Write `docs/validated-idea.md`: problem · who · smallest proof · killer assum
 Starter prompts:
 - `I want to build {feature}. interview me about implementation, UX, edge cases, and tradeoffs until we have covered everything, then write the spec to SPEC.md`
 - `I am a {role}. walk me through what happens when a user {action}, from the UI down to the result`
+
+## AWS (if the `aws-core` / `aws-agents` plugins are installed)
+- `Skill(aws-core:aws-billing-and-cost-management)` · `Skill(aws-agents:agents-pay)`
+
+If the idea only works below a certain cost per user, get that number into
+`docs/validated-idea.md` as the killer assumption — before anyone designs for it.

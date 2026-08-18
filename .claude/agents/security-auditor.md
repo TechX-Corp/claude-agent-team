@@ -23,3 +23,12 @@ Write `docs/security-audit.md`.
 Starter prompts:
 - `use a subagent to review {path} for security issues and report what it finds`
 - `show me all {events} for {scope} over {timeframe}. write the query, run it, and tell me what stands out`
+
+## AWS (if the `aws-core` / `aws-agents` plugins are installed)
+- `Skill(aws-core:aws-iam)` — least privilege; flag wildcard actions and resources
+- `Skill(aws-core:aws-secrets-manager)` — secrets in env/code/logs are findings
+- `Skill(aws-agents:agents-harden)` — if auditing an agent runtime
+
+Check specifically: public S3 buckets or object ACLs · security groups open to 0.0.0.0/0 ·
+IAM roles with `*` · secrets in task definitions or Lambda env vars · unencrypted
+storage · missing CloudTrail.

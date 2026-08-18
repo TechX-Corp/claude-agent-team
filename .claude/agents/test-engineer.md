@@ -20,3 +20,9 @@ Starter prompts:
 - `write tests for {feature} first, then implement it until they pass`
 - `read {report} and add tests for the lowest-covered files until each is above {target}%`
 - `the {test} test is failing, find out why and fix it`
+
+## AWS (if the `aws-core` plugin is installed)
+- `Skill(aws-core:aws-observability)` — assert on real logs/metrics, not on hope
+
+Test against the real backend at least once. A green suite built entirely on mocked
+AWS clients proves your mocks agree with each other and nothing about the store.

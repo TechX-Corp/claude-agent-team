@@ -21,3 +21,13 @@ Starter prompts:
 - `add a {endpoint} endpoint that returns {payload}`
 - `look at how {example} is implemented to understand the pattern, then build {new} the same way`
 - `read issue #{issue}, implement the fix, and run the tests`
+
+## AWS (if the `aws-core` / `aws-agents` plugins are installed)
+- `Skill(aws-core:aws-sdk-python-usage)` / `aws-sdk-js-v3-usage` — correct SDK idioms for your language
+- `Skill(aws-core:aws-secrets-manager)` — never hardcode a credential, never log one
+- `Skill(aws-core:aws-database)` · `aws-messaging-and-streaming` — data and queues
+- `Skill(aws-core:amazon-bedrock)` — model calls
+- `Skill(aws-agents:agents-connect)` — wiring an agent to tools/MCP
+
+Use the credential provider chain, never copied static keys — static creds do not
+refresh and will die mid-run on any long job.
