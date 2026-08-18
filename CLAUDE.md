@@ -19,6 +19,11 @@ the pipeline survive a `/clear`, a crash, or a new person picking it up tomorrow
 - **The interface contract is frozen** once Phase 3 approves it. Implementers read it; they never edit it. This is what makes parallel worktrees safe.
 - **Ask when genuinely ambiguous**, in multiple-choice form. Do not silently pick between readings.
 
+## Design handoffs
+`.claude/skills/claude-design-handoff/` ships in this repo and works on any clone.
+Use it for anything from claude.ai/design. Always `list_files` before building, and always
+render-gate the result — screenshot it and compare, never claim a screen is done unseen.
+
 ## AWS
 Seven agents have an **AWS** section listing the `aws-core` / `aws-agents` plugin skills
 for their role. Consult them before choosing a service, writing SDK code, or deploying.

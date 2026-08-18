@@ -43,6 +43,14 @@ or someone else picking it up next week.
 file with a test pinning it. Phase 5 implementers may read it but never edit it — which
 is what lets backend and frontend run in parallel git worktrees without colliding.
 
+## Designs from claude.ai/design
+
+`ux-designer` handles Claude Design handoffs through `.claude/skills/claude-design-handoff/`,
+which **travels with this repo** — no install, works on any clone. Drop a
+`claude.ai/design/p/<uuid>` link, a share link, or an exported `IDE - <name>.html` and it
+covers fetching both link types, the DC-runtime → vanilla port, the 256 KiB silent-truncation
+trap on assets, and the render gate.
+
 ## AWS projects
 
 Seven agents carry an **AWS** section pointing at the official `aws-core` / `aws-agents`
