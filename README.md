@@ -1,15 +1,71 @@
-# Agent team for Claude Code
+# claude-agent-team
 
-A full-SDLC agent team you get by cloning a repo. No install step, no global config —
-Claude Code reads `.claude/` from the project root automatically.
+**A full-SDLC agent team for Claude Code — clone the repo, run `/build-product`.
+Eleven roles, nine phases, no install.**
 
-## Use it
+Claude Code reads `.claude/` from the project root automatically, so a clone needs no install
+step — or copy it into `~/.claude/` to get the team in every project.
+
+## Install
+
+Two ways, depending on whether you want the team in **one project** or in **every project
+on your machine**.
+
+### One project — clone it (recommended)
+
+The team travels with the repo. Nothing is installed, nothing is shared.
 
 ```bash
-git clone <this-repo> my-product && cd my-product
+git clone https://github.com/TechX-Corp/claude-agent-team.git my-product && cd my-product
 rm -rf .git && git init          # start your own history
 claude
 ```
+
+Nothing to enable. Claude Code loads `.claude/agents/`, `.claude/commands/`, and
+`.claude/skills/` from the project root on startup — there is no `settings.json` in this
+repo and none is needed.
+
+Use this when the team is *for this product*. Edits to an agent stay with the repo, get
+committed, and reach whoever clones it next.
+
+### Every project — copy into `~/.claude/`
+
+Makes the eleven agents and both commands available in any directory you run `claude` from.
+
+```bash
+git clone https://github.com/TechX-Corp/claude-agent-team.git /tmp/agent-team
+
+mkdir -p ~/.claude/agents ~/.claude/commands ~/.claude/skills
+cp -r /tmp/agent-team/.claude/agents/*   ~/.claude/agents/
+cp -r /tmp/agent-team/.claude/commands/* ~/.claude/commands/
+cp -r /tmp/agent-team/.claude/skills/*   ~/.claude/skills/
+```
+
+Restart Claude Code. `CLAUDE.md` is **not** copied — it holds this repo's rules, and a
+global copy would apply them to every unrelated project you open.
+
+Three things to know before choosing this:
+
+- **A project copy takes precedence over the global one.** Same agent name in both places →
+  `.claude/` in the project wins. That is the fix when a global agent is wrong for one repo:
+  drop a corrected copy in that project.
+- **The copies then drift.** Nothing syncs them. Pull this repo six months later and your
+  `~/.claude/` still has the old files — re-run the `cp` to update.
+- **Check what you are overwriting.** If you already have `~/.claude/commands/build-product.md`
+  or a `claude-design-handoff` skill from somewhere else, the `cp` replaces it silently.
+  `diff -r` first if you are unsure.
+
+Prefer the per-project clone unless you genuinely want these roles everywhere.
+
+### Check it landed
+
+```
+/agents      # eleven roles listed
+/help        # /build-product and /adopt-codebase listed
+```
+
+Missing? You opened Claude Code outside the repo root, the session predates the install, or
+`.claude/` is gitignored. `cd` to the right place and restart.
 
 ### Example — a new product from nothing
 

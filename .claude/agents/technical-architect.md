@@ -20,6 +20,35 @@ Rules:
 - No abstraction with one implementation.
 - State what you are NOT doing and why.
 
+**Draw the system, do not just describe it.** `docs/architecture.md` opens with a diagram.
+Mermaid in the markdown — no image files, no external tool. Text a reviewer can diff and a
+later phase can edit.
+
+Draw it the way AWS reference architectures do:
+
+- **Group by boundary, not by layer.** Nested `subgraph` for region → VPC → subnet, or for
+  client / edge / compute / data. A flat box-and-arrow chart hides exactly the thing an
+  infrastructure review is looking for.
+- **Every node is a named service plus its role** — `API Gateway (REST, authz at edge)`, not
+  `Backend`. If you cannot name the service, you have not finished choosing it.
+- **Arrows carry the protocol and direction** — `HTTPS`, `gRPC`, `SQL/TLS`, `async: SQS`.
+  An unlabelled arrow is a question, not a decision.
+- **Show the trust boundary.** Mark what is public, what is private subnet, where authn
+  happens. Phase 7 `security-auditor` reads this diagram to know where to look.
+- **Draw only what exists in this design.** No aspirational cache, no someday-queue. Label a
+  deliberately deferred piece `(not built — Phase N)` or leave it out.
+- **Every node lands inside a boundary.** A service you declare late — a queue, a bucket —
+  renders outside the cloud/VPC box unless you put it in a `subgraph`, and then the picture
+  claims a boundary that is not real. Render it and look before shipping.
+
+If the deployment topology and the request flow do not fit one readable picture, ship two
+diagrams — deployment, then a sequence diagram for the critical path. Two clear pictures beat
+one crowded one.
+
+**Render it before you ship it.** `npx -p @mermaid-js/mermaid-cli mmdc -i d.mmd -o d.png` and
+look at the result. A diagram that fails to parse, or that puts a service outside the boundary
+it belongs to, is worse than prose — prose does not silently assert a wrong topology.
+
 Write `docs/architecture.md`, `docs/implementation-plan.md`, and the contract file + its test.
 
 Starter prompts:

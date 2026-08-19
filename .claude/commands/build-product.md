@@ -37,7 +37,8 @@ plus the **parallelisation map** (which tracks touch disjoint files).
 **CHECKPOINT — the last one.** After this, do not ask again until Phase 9.
 
 ### Phase 4 — Scaffolding
-`Agent(devops-engineer)`. Done = fresh clone installs, runs, and tests green. Prove all three.
+`Agent(devops-engineer)`, **building the stack `docs/architecture.md` chose** — not a
+substitute. Done = fresh clone installs, runs, and tests green. Prove all three.
 
 ### Phase 5 — Parallel implementation
 For each track in the parallelisation map:
@@ -56,7 +57,8 @@ Spawn BOTH in one message: `Agent(code-reviewer)` and `Agent(security-auditor)`.
 Fix what is real. Decline nits with a reason; do not apply feedback wholesale.
 
 ### Phase 8 — Ship
-`Agent(devops-engineer)`: run the acceptance commands, show output, then `gh pr create`.
+`Agent(devops-engineer)`: deploy per `docs/architecture.md`, run the acceptance commands,
+show output, then `gh pr create`.
 **HARD GATE — stop.** Report the PR URL. Do not merge.
 
 ### Phase 9 — Feedback → `docs/backlog.md`
