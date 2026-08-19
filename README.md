@@ -144,6 +144,43 @@ or someone else picking it up next week.
 file with a test pinning it. Phase 5 implementers may read it but never edit it — which
 is what lets backend and frontend run in parallel git worktrees without colliding.
 
+## What Phase 3 draws
+
+`docs/architecture.md` opens with a diagram, not a paragraph. Mermaid in the markdown —
+diffable in review, editable by a later phase, and rendered by GitHub as-is:
+
+```mermaid
+graph TB
+  subgraph public["Public internet"]
+    U[Browser]
+  end
+  subgraph aws["AWS ap-southeast-1"]
+    subgraph edge["Edge — public"]
+      CF[CloudFront]
+      AGW["API Gateway (REST, authz at edge)"]
+    end
+    subgraph vpc["VPC private subnet"]
+      L["Lambda (order service)"]
+      DB[("RDS Postgres (orders)")]
+      Q[SQS order-events]
+    end
+  end
+  U -->|HTTPS| CF
+  CF -->|HTTPS| AGW
+  AGW -->|"invoke (IAM)"| L
+  L -->|"SQL/TLS"| DB
+  L -->|"async: SQS"| Q
+```
+
+Drawn the way AWS reference architectures are: **grouped by boundary** (region → VPC →
+subnet) rather than by layer, **every node a named service plus its role** — `API Gateway
+(REST, authz at edge)`, never `Backend` — and **every arrow carrying its protocol**. An
+unlabelled arrow is a question, not a decision.
+
+That is also why Phase 7 works. `security-auditor` starts at this diagram: the trust
+boundaries tell it which crossings to audit first, and a boundary drawn here but missing
+in the code is itself a finding.
+
 ## Designs from claude.ai/design
 
 `ux-designer` handles Claude Design handoffs through `.claude/skills/claude-design-handoff/`,
